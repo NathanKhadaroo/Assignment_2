@@ -55,12 +55,16 @@ for row in range(len(pubfinder)):
                  pubx.append(row)
                  puby.append(col)
 
+"""
+#Checks that the pub has been correctly identified by plotting it 
 
 plt.xlim(0, env_limits)
 plt.ylim(0, env_limits)
 plt.imshow(environment)
 plt.scatter(pubx, puby)       
 plt.show()       
+"""
+
 
 #Create the drinkers and give them a house 
 agents = [] 
@@ -70,7 +74,8 @@ house = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110,\
 
 for i in range (25):
     agents.append(agentframework_drinkers.Agent(environment, agents, pubx, puby, house))
-    
+
+"""    
 #plots the drinkers, to test that they have been created correctly
 
 plt.xlim(0, env_limits)
@@ -78,14 +83,12 @@ plt.ylim(0, env_limits)
 plt.imshow(environment) 
 for agent in agents:
     plt.scatter(agent.x, agent.y, c = 'snow')    
-    
+""" 
 
-
+#animation time
 
 fig = plt.figure(figsize=(5, 5))
 
-#animation time
-    
 def update(frame_number):
     
     fig.clear()  

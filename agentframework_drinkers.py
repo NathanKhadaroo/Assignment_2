@@ -25,13 +25,27 @@ class Agent():
          self.house = house
          
      
-    def move(self):
+    def move(self, ):
+        #randomly moves agents by 7 steps in both dimensions
             if random.random() < 0.5:
-                self.y = (self.y + 1) % 300
+                self.y = (self.y + 7)
             else:
-                self.y = (self.y - 1) % 300
+                self.y = (self.y - 7)
         
             if random.random() < 0.5:
-                self.x = (self.x + 1) % 300
+                self.x = (self.x + 7)
             else:
-                self.x = (self.x - 1) % 300
+                self.x = (self.x - 7)
+       #checks to see if the agents movement pushes them off the border of the
+       #environment, if it does it instead outputs their location as at the border
+            if self.x < 0:
+                self.x = 0
+            
+            if self.y < 0:
+                self.y = 0
+                
+            if self.x > 300:
+                self.x = 300
+                
+            if self.y > 300:
+                self.y = 300
