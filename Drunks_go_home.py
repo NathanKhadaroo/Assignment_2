@@ -8,7 +8,7 @@ Created on Mon Dec  2 15:19:53 2019
 #Importing packages
 import matplotlib.pyplot as plt
 import pandas
-
+import agentframework_drinkers
 
 #creates the environment from the raster file
 
@@ -56,8 +56,24 @@ plt.imshow(environment)
 plt.scatter(pubx, puby)       
 plt.show()       
 
-#finds the houses 
+#Create the drinkers and give them a house 
+agents = [] 
 
-houses = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110,\\
+house = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110,\
           120, 130, 140, 150, 160, 170, 180, 190, 200, 210, 220, 230, 240, 250]
+
+for i in range (25):
+    agents.append(agentframework_drinkers.Agent(environment, agents, pubx, puby, house))
+    
+#plots the drinkers, to test that they have been created correctly
+
+plt.xlim(0, env_limits)
+plt.ylim(0, env_limits)
+plt.imshow(environment) 
+for agent in agents:
+    plt.scatter(agent.x, agent.y, c = 'snow')    
+    
+
+
+
 
