@@ -15,7 +15,7 @@ class Agent():
     def __init__ (self, environment, agents, pubx, puby, house):
          
          self.environment = environment
-         
+         self.env_limits = len(environment)
          #initialies the starting coordinates of the drunks somewhere in the pub
          self.pubx = pubx
          self.puby = puby

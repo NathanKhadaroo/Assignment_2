@@ -6,11 +6,17 @@ Created on Mon Dec  2 15:19:53 2019
 """
 
 #Importing packages
+import matplotlib
 import matplotlib.pyplot as plt
 import pandas
 import agentframework_drinkers
 
+#defining the nuber of iterations
+
+num_of_iterations = 100
+
 #creates the environment from the raster file
+
 
 environment = []
 
@@ -23,10 +29,10 @@ with open('drunk.plan.txt') as f:
         environment.append(rowlist_of_lists)
         
 env_limits = len(environment)  
-#Plots the bare environment to tests whether the environment is read correctly
-        
 
 """
+#Plots the bare environment to tests whether the environment is read correctly
+
 plt.xlim(0, env_limits)
 plt.ylim(0, env_limits)
 plt.imshow(environment)
@@ -41,7 +47,7 @@ pubfinder = pandas.read_csv('drunk.plan.txt')
 pubx = []
 puby = []
 
-#checks the all x, y coordinates for value of 1, if found appends the
+#checks the all coordinates for value of 1, if a one is found appends the
 #coordinates to pubx and puby lists
 for row in range(len(pubfinder)): 
          for col in range(len(pubfinder)):
@@ -74,6 +80,31 @@ for agent in agents:
     plt.scatter(agent.x, agent.y, c = 'snow')    
     
 
+
+
+fig = plt.figure(figsize=(5, 5))
+
+#animation time
+    
+def update(frame_number):
+    
+    fig.clear()  
+    plt.imshow(environment)
+    plt.xlim(0, agents[0].env_limits)
+    plt.ylim(0, agents[0].env_limits)
+    plt.scatter(pubx, puby)
+    plt.imshow(environment)
+    
+    for agent in agents:  
+        agent.move()
+    
+    for agent in agents:
+        plt.scatter(agent.x, agent.y, c = 'snow')  
+    
+    
+animation = matplotlib.animation.FuncAnimation(fig, update, interval=1, repeat=False, frames=num_of_iterations)
+
+plt.show()
 
 
 
