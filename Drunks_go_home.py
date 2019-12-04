@@ -6,7 +6,7 @@ Created on Mon Dec  2 15:19:53 2019
 """
 
 #Importing packages
-import matplotlib
+import matplotlib.animation
 import matplotlib.pyplot as plt
 import pandas
 import agentframework_drinkers
@@ -69,11 +69,25 @@ plt.show()
 #Create the drinkers and give them a house 
 agents = [] 
 
-house = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110,\
+adresses = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110,\
           120, 130, 140, 150, 160, 170, 180, 190, 200, 210, 220, 230, 240, 250]
 
+
+home_x = []
+home_y = []
+
+housemap = pandas.read_csv('drunk.plan.txt')
+
+for row in range(len(housemap)): 
+         for col in range(len(housemap)):
+             for destination in adresses:
+                 if housemap.iat[row, col] == destination:
+                     home_x.append(row)
+                     home_y.append(col)               
+
 for i in range (25):
-    agents.append(agentframework_drinkers.Agent(environment, agents, pubx, puby, house))
+    agents.append(agentframework_drinkers.Agent(environment, agents,\
+                                                pubx,puby, home_x[i], home_y[i] ))
 
 """    
 #plots the drinkers, to test that they have been created correctly
@@ -91,6 +105,7 @@ fig = plt.figure(figsize=(5, 5))
 
 def update(frame_number):
     
+    
     fig.clear()  
     plt.imshow(environment)
     plt.xlim(0, agents[0].env_limits)
@@ -104,6 +119,13 @@ def update(frame_number):
     for agent in agents:
         plt.scatter(agent.x, agent.y, c = 'snow')  
     
+    print(agent.home_x)
+    print(agent.home_y)    
+    #for agent in agents:
+     #   if environment[]
+    
+    if len(agents) == 0:
+        print("Everybody found their way home.")
     
 animation = matplotlib.animation.FuncAnimation(fig, update, interval=1, repeat=False, frames=num_of_iterations)
 

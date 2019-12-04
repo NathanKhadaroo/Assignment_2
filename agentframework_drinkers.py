@@ -12,7 +12,7 @@ class Agent():
     
 #Creates our drinkers and gives them acces to the information they 
 #need for their behaiviour  
-    def __init__ (self, environment, agents, pubx, puby, house):
+    def __init__ (self, environment, agents, pubx, puby, home_x, home_y):
          
          self.environment = environment
          self.env_limits = len(environment)
@@ -22,10 +22,12 @@ class Agent():
          self.x = random.randrange (min(pubx), max(pubx)+1, 1)
          self.y = random.randrange (min(puby), max(puby)+1, 1)
          self.agents = agents
-         self.house = house
+         #assigns a home to each agent
+         self.home_x = home_x
+         self.home_y = home_y
          
      
-    def move(self, ):
+    def move(self):
         #randomly moves agents by 7 steps in both dimensions
             if random.random() < 0.5:
                 self.y = (self.y + 7)
@@ -49,3 +51,7 @@ class Agent():
                 
             if self.y > 300:
                 self.y = 300
+                
+    def found_home(self, agents):
+        agents.remove(self)
+        
