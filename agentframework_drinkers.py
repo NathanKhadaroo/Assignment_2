@@ -12,7 +12,7 @@ class Agent():
     
 #Creates our drinkers and gives them acces to the information they 
 #need for their behaiviour  
-    def __init__ (self, environment, agents, pubx, puby, home_x, home_y):
+    def __init__ (self, environment, agents, pubx, puby, adresses):
          
          self.environment = environment
          self.env_limits = len(environment)
@@ -23,21 +23,20 @@ class Agent():
          self.y = random.randrange (min(puby), max(puby)+1, 1)
          self.agents = agents
          #assigns a home to each agent
-         self.home_x = home_x
-         self.home_y = home_y
+         self.adresses = adresses
          
      
     def move(self):
         #randomly moves agents by 7 steps in both dimensions
             if random.random() < 0.5:
-                self.y = (self.y + 7)
+                self.y = (self.y + 5)
             else:
-                self.y = (self.y - 7)
+                self.y = (self.y - 5)
         
             if random.random() < 0.5:
-                self.x = (self.x + 7)
+                self.x = (self.x + 5)
             else:
-                self.x = (self.x - 7)
+                self.x = (self.x - 5)
        #checks to see if the agents movement pushes them off the border of the
        #environment, if it does it instead outputs their location as at the border
             if self.x < 0:

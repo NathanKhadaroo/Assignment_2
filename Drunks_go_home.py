@@ -13,7 +13,7 @@ import agentframework_drinkers
 
 #defining the nuber of iterations
 
-num_of_iterations = 100
+num_of_iterations = 100000
 
 #creates the environment from the raster file
 
@@ -42,6 +42,7 @@ plt.imshow(environment)
 
 #reads in the raster file a dataframe
 pubfinder = pandas.read_csv('drunk.plan.txt')
+
 
 #creates lists for the vertical and horizontal dimesnions of the pub
 pubx = []
@@ -72,22 +73,10 @@ agents = []
 adresses = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110,\
           120, 130, 140, 150, 160, 170, 180, 190, 200, 210, 220, 230, 240, 250]
 
-
-home_x = []
-home_y = []
-
-housemap = pandas.read_csv('drunk.plan.txt')
-
-for row in range(len(housemap)): 
-         for col in range(len(housemap)):
-             for destination in adresses:
-                 if housemap.iat[row, col] == destination:
-                     home_x.append(row)
-                     home_y.append(col)               
-
 for i in range (25):
     agents.append(agentframework_drinkers.Agent(environment, agents,\
-                                                pubx,puby, home_x[i], home_y[i] ))
+                                                pubx,puby, adresses[i]))
+
 
 """    
 #plots the drinkers, to test that they have been created correctly
@@ -114,15 +103,15 @@ def update(frame_number):
     plt.imshow(environment)
     
     for agent in agents:  
+        
         agent.move()
-    
-    for agent in agents:
+        
         plt.scatter(agent.x, agent.y, c = 'snow')  
-    
-    print(agent.home_x)
-    print(agent.home_y)    
-    #for agent in agents:
-     #   if environment[]
+        
+        if pubfinder.iat[agent.x, agent.y] == agent.adresses:
+            agents.remove(agent) 
+
+    print(len(agents))
     
     if len(agents) == 0:
         print("Everybody found their way home.")
