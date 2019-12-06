@@ -121,7 +121,7 @@ def update(frame_number):
           
     
     #print(len(agents))
-    print(frame_number)
+    #print(frame_number)
     if len(agents) == 0:
         print("Everybody found their way home.")
     

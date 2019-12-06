@@ -52,9 +52,10 @@ class Agent():
                 self.y = 300
                 
     def leave_footprint(self, pubfinder, adresses_set):
+        #this ensures that the houses are not renamed if agents pass through them 
         if pubfinder.iat[self.x, self.y] in adresses_set :
             pass
        
         else:
-            self.environment[self.y][self.x] += 1
+            self.environment[self.y][self.x] -= 1
         
