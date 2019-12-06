@@ -67,7 +67,7 @@ plt.show()
 """
 
 
-#Create the drinkers and give them a house 
+#Create the drinkers and assigns them a house 
 agents = [] 
 
 adresses = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110,\
@@ -92,6 +92,9 @@ for agent in agents:
 
 fig = plt.figure(figsize=(5, 5))
 
+adresses_set = {10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110,\
+          120, 130, 140, 150, 160, 170, 180, 190, 200, 210, 220, 230, 240, 250}
+
 def update(frame_number):
     
     
@@ -109,16 +112,23 @@ def update(frame_number):
         plt.scatter(agent.x, agent.y, c = 'snow')  
         
         if pubfinder.iat[agent.x, agent.y] == agent.adresses:
-            agents.remove(agent) 
-
-    print(len(agents))
+           
+            agents.remove(agent)
+            print("The person who lives at house number", agent.adresses,"has found their way home")
+        
+        agent.leave_footprint(pubfinder, adresses_set)
+            
+          
     
+    #print(len(agents))
+    print(frame_number)
     if len(agents) == 0:
         print("Everybody found their way home.")
     
 animation = matplotlib.animation.FuncAnimation(fig, update, interval=1, repeat=False, frames=num_of_iterations)
 
 plt.show()
+
 
 
 

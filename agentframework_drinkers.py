@@ -51,6 +51,10 @@ class Agent():
             if self.y > 300:
                 self.y = 300
                 
-    def found_home(self, agents):
-        agents.remove(self)
+    def leave_footprint(self, pubfinder, adresses_set):
+        if pubfinder.iat[self.x, self.y] in adresses_set :
+            pass
+       
+        else:
+            self.environment[self.y][self.x] += 1
         
