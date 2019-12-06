@@ -10,10 +10,11 @@ import matplotlib.animation
 import matplotlib.pyplot as plt
 import pandas
 import agentframework_drinkers
+import csv
 
 #defining the nuber of iterations
 
-num_of_iterations = 100000
+num_of_iterations = 200
 
 #creates the environment from the raster file
 
@@ -100,10 +101,10 @@ def update(frame_number):
     
     fig.clear()  
     plt.imshow(environment)
-    plt.xlim(0, agents[0].env_limits)
+    plt.xlim(0, agents[0].env_limits-1)
     plt.ylim(0, agents[0].env_limits)
     plt.scatter(pubx, puby)
-    plt.imshow(environment)
+ 
     
     for agent in agents:  
         
@@ -118,17 +119,23 @@ def update(frame_number):
         
         agent.leave_footprint(pubfinder, adresses_set)
             
-          
-    
+           
     #print(len(agents))
-    #print(frame_number)
+    print(frame_number)
     if len(agents) == 0:
         print("Everybody found their way home.")
+        
+    if frame_number == num_of_iterations-1:
+        print("Some people didn't find their way home.")
     
+        
 animation = matplotlib.animation.FuncAnimation(fig, update, interval=1, repeat=False, frames=num_of_iterations)
 
 plt.show()
 
 
-
-
+with open('density_map.txt', 'w', newline='') as output:
+            csvwriter = csv.writer(output, delimiter=',',
+                                   quoting=csv.QUOTE_MINIMAL)
+            for row in environment:
+                csvwriter.writerow(row)
