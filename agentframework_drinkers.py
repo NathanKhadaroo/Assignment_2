@@ -57,5 +57,5 @@ class Agent():
             pass
        
         else:
-            self.environment[self.y][self.x] += 1
+            self.environment[self.y][self.x] -= 1
         
