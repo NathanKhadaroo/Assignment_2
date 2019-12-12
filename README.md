@@ -10,9 +10,9 @@ This software is designed for the “Planning for drunks” project.
 
 To run the code the following files must be in the users working directory:
 
-*Drunks_go_home.py
-*agentframework_drinkers.py
-*drunk.plan.txt
+* Drunks\_go_home.py
+* agentframework_drinkers.py
+* drunk.plan.txt
 
 
 The program runs in the command prompt as "python Drunks_go_home.py [value]" where [value] is the desired number 
