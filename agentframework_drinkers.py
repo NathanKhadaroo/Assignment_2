@@ -39,8 +39,10 @@ class Agent():
                 self.x = (self.x + 5)
             else:
                 self.x = (self.x - 5)
-       #checks to see if the agents movement pushes them off the border of the
-       #environment, if it does it instead outputs their location as being at the border
+                
+               
+ #checks to see if the agents movement pushes them off the border of the
+ #environment, if it does it instead outputs their location as being at the border
             if self.x < 0:
                 self.x = 0
             
@@ -51,8 +53,8 @@ class Agent():
                 self.x = 298
                 
             if self.y > 298:
-                self.y = 298
-                
+                self.y = 298 
+               
     def leave_footprint(self, pubfinder, adresses_set):
         #this ensures that the houses are not renamed if agents pass through them 
         if pubfinder.iat[self.x, self.y] in adresses_set :

@@ -16,8 +16,8 @@ import sys
 
 
 #takes the argument given when running the code
-#forces it to be an integer, otherwise returns a value error
-#defines the result as the number of interations
+#if that argument is an integer it becomes the number of iterations
+#otherwise it sets the number of iterations as a default value
 
 
 while True:
@@ -25,12 +25,13 @@ while True:
        num_of_iterations = int(sys.argv[1])
        break
     except ValueError:
-        print("Invalid entry, running model with default value of 100") 
-        num_of_iterations = 100
+        print("Invalid entry, running model with default value of 1000") 
+        num_of_iterations = 1000
         break
-#num_of_iterations = int(sys.argv[1])
 
-#creates the environment from the raster file
+
+#Creates the environment from the raster file
+
 
 #creates an empty list
 environment = []
@@ -173,7 +174,8 @@ def update(frame_number):
             print("Only", 25-len(agents), "people found their way home.")
     
 #defines the parameters of our animation         
-animation = matplotlib.animation.FuncAnimation(fig, update, interval=1, repeat=False, frames=num_of_iterations)
+animation = matplotlib.animation.FuncAnimation(fig, update, interval=1, repeat=False,\
+                                               frames=num_of_iterations)
 
 #looks for a fig object and opens the window in which it visualises it
 plt.show()
