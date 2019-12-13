@@ -33,5 +33,5 @@ The model will also print statements whenever an agent has found its way home, a
 **Licence and supporting documentation**
 
 This software is licensed under the MIT License, more information about the development can be found in the pdf 
-file called assignment_2.pdf, each main commit also has information that can help the used understand what has 
+file called assignment_2.pdf, each main commit also has information that can help the user understand what has 
 been changed.
